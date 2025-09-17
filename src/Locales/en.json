@@ -1,0 +1,79 @@
+{
+	"stats": {
+		"energy": {
+			"title": "Energy",
+			"description": "Placeholder",
+			"attribute": "Resource"
+		},
+		"knowledge": {
+			"title": "Intellect",
+			"description": "Knowledge is power.. Exp gain is increased for each intellect points you possess.",
+			"attribute": "Stats"
+		},
+		"strength": {
+			"title": "Strength",
+			"description": "",
+			"attribute": "Stats"
+		},
+		"health": {
+			"title": "Intellect",
+			"description": "Knowledge is power.. Exp gain is increased for each intellect points you possess.",
+			"attribute": "Stats"
+		},
+		"magicules": "Magicules",
+		"coins": {
+			"title": "Coins",
+			"description": "Currency used in the country of Menglu. Spend wisely :)",
+			"attribute": "Resource"
+		}
+	},
+	"navigation": {
+		"world": "World",
+		"inventory": "Inventory",
+		"stats": "Stats",
+		"settings": "Settings",
+		"info": "Info"
+	},
+	"locations": {
+		"label": "Locations",
+		"hometown": {
+			"title": "Xia city",
+			"description": "Your hometown, a small city located near the coast in Eastern China, one of the region's seven main urban centers.",
+			"attribute": "location",
+			"buybooks": {
+				"title": "Buy Books",
+				"attribute": "Instant, Knowledge",
+				"description": "Buy meaningful books, Increase your knowledge, "
+			},
+			"readbooks": {
+				"title": "Read Books",
+				"attribute": "Action, Knowledge",
+				"description": "Feeling smart now eh?"
+			},
+			"dopushups": {
+				"title": "Do Push ups",
+				"attribute": "Instant, Strength",
+				"description": "One.. Two.. Three..... Twenty one.. twenty..."
+			},
+			"rest": {
+				"title": "Rest",
+				"attribute": "Action, Rest",
+				"description": "Do nothing for a moment to catch your breath."
+			},
+			"goschool": {
+				"title": "Go to school",
+				"attribute": "Action, Knowledge",
+				"description": "Stinky nerds"
+			}
+		},
+		"mindscape": {
+			"title": "Mindscape",
+			"attribute": "location",
+			"description": "Your personal mental sanctuary, a realm shaped by thought and memory. This is where you truly belong - a space that reflects your innermost self. Use this mental sanctuary to advance your cultivation practices."
+		}
+	},
+	"rightbar": {
+		"label": "Actions",
+		"message": "Message"
+	}
+}
