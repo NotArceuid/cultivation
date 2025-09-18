@@ -1,12 +1,12 @@
 <script lang="ts">
-	import type { ProgressAction } from "../../Game/Action.svelte";
+	import type { IProgress } from "../../Game/Action.svelte";
 	import type { ProgressBarOptions } from "./Progressbar.svelte.ts";
 
 	let {
 		data,
 		ops,
 	}: {
-		data: ProgressAction;
+		data: IProgress;
 		ops?: ProgressBarOptions;
 	} = $props();
 

@@ -7,6 +7,8 @@
 	import { MindscapeInfo } from "./Mindscape.svelte.ts";
 	import Hometown from "./Hometown/Hometown.svelte";
 	import { HometownInfo } from "./Hometown/Hometown.svelte.ts";
+	import Combat from './Combat.svelte';
+	import { currentDungeon, isInCombat, type IDungeonInfo } from '../../Game/Combat/Combat.svelte.ts';
 
 	onMount((): void => {
 		CurrentLocation.subscribe((x) => {
@@ -15,6 +17,11 @@
 
 		ChangePage(LocationEnum.Hometown, "locations");
 	});
+
+	let dungeonInfo = $state<IDungeonInfo>() 
+	currentDungeon.subscribe((x) => {
+		dungeonInfo = x;
+	})
 </script>
 
 <div class="flex flex-row w-full h-full">
@@ -34,13 +41,15 @@
 			>
 		</div>
 	</div>
-	<div id="locations" class="relative w-full">
-		<Hometown />
-
-		<Mindscape />
-	</div>
+		<div id="locations" class="relative w-full">
+			{#if isInCombat}
+				<Combat data={dungeonInfo!}/>
+			{:else}
+				<Hometown /> 
+				<Mindscape />
+			{/if}
+		</div>
 </div>
-
 <style>
 	#locations-nav button {
 		height: 3rem;

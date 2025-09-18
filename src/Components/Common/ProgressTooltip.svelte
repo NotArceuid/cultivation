@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { _ } from "svelte-i18n";
 	import type { Vector2 } from "../../Game/Shared/Vector.js";
-	import { ProgressAction } from "../../Game/Action.svelte.js";
+	import type { IProgressAction } from "../../Game/Action.svelte.js";
 
 	let {
 		data,
 		position,
 	}: {
-		data: ProgressAction;
+		data: IProgressAction;
 		position: Vector2;
 	} = $props();
 
@@ -39,7 +39,9 @@
 			{#each data.requirements as [requirement, isMet]}
 				<h6 class={isMet() ? "text-green-300" : "text-red-500"}>
 					{$_(requirement.subject)}
-					{$_(requirement.predicate)}
+					{#each requirement.predicate as predicate}
+						{$_(predicate)}
+					{/each}
 				</h6>
 			{/each}
 		{/if}
@@ -49,7 +51,9 @@
 			{#each data.effects as effect}
 				<h6>
 					{$_(effect.subject)}
-					{$_(effect.predicate)}
+					{#each effect.predicate as predicate}
+						{$_(predicate)}
+					{/each}
 				</h6>
 			{/each}
 		{/if}

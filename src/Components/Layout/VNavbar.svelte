@@ -3,16 +3,10 @@
 	import { CurrentPage, PagesEnum } from "../Pages/Pages";
 	import { _ } from "svelte-i18n";
 	import Progressbar from "../Common/Progressbar.svelte";
-	import { useProgressTooltip } from "../Common/Tooltip.svelte.ts";
-	import { ProgressAction } from "../../Game/Action.svelte.ts";
+	import { useProgressInfoTooltip } from "../Common/Tooltip.svelte.ts";
+	import type { IProgressInfo } from "../../Game/Action.svelte.ts";
 
-	let energyData: ProgressAction = $state(
-		new ProgressAction(
-			"stats.energy.title",
-			"stats.energy.description",
-			"stats.energy.attribute",
-		),
-	);
+	let energyData: IProgressInfo = $state({ progress: 0, maxProgress: 0, description: 'stats.energy.description', title: 'stats.energy.title', attribute: 'stats.energy.attribute'});
 
 	$effect(() => {
 		energyData.progress = Player.Energy;
@@ -27,7 +21,7 @@
 	<div id="energyStats" class="flex-col">
 		<h6 class="text-center">Novice mage</h6>
 
-		<div class="relative" use:useProgressTooltip={energyData}>
+		<div class="relative" use:useProgressInfoTooltip={energyData}>
 			<h6 class="absolute left-2 z-1">
 				E: {Player.Energy} / {Player.MaxEnergy}
 			</h6>

@@ -1,40 +1,13 @@
 import { Update } from "./Game.ts";
 import { Player } from "./Player.svelte.ts";
 
-export class ProgressAction implements IAction, IInfo {
-	public progress: number = $state(0);
-	public maxProgress: number = $state(0);
-	public nextTick: () => void;
+export type IProgressAction = IProgress & IAction & IInfo;
+export type IProgressInfo = IProgress & IInfo;
 
-	constructor(
-		title: string,
-		description: string,
-		attribute: string,
-		onSuccess: () => void = () => {},
-		requirements: [EffectFormat, () => boolean][] = [],
-		effects: EffectFormat[] = [],
-		nextTick: () => void = () => {},
-		maxProgress: number = 0,
-		progress: number = 0,
-	) {
-		((this.title = title),
-			(this.description = description),
-			(this.maxProgress = maxProgress));
-		this.progress = progress;
-		this.attribute = attribute;
-		this.nextTick = nextTick;
-		this.requirements = requirements;
-		this.effects = effects;
-		this.onSuccess = onSuccess;
-	}
-
-	onSuccess: () => void;
-	title: string;
-	attribute: string;
-	description: string;
-	sum: number = $state(0);
-	effects: EffectFormat[];
-	requirements: [EffectFormat, () => boolean][];
+export interface IProgress {
+	progress: number; 
+	maxProgress: number;
+	nextTick?: () => void;
 }
 
 export interface IAction extends IInfo {
@@ -56,12 +29,13 @@ export function IsRequirementsMet(data: IAction): boolean {
 
 export interface EffectFormat {
 	subject: string;
-	predicate: string;
+	predicate: string[];
 }
 
 Update.add(() => {
 	Player.Actions.forEach((action) => {
-		action.nextTick();
+		if (action.nextTick != null)
+			action.nextTick();
 	});
 });
 
@@ -71,7 +45,7 @@ export function UseAction(action: IAction) {
 	}
 }
 
-export function AddAction(action: ProgressAction): number {
+export function AddAction(action: IProgressAction): number {
 	if (ActionExists(action)) {
 		return -1;
 	}
@@ -85,7 +59,7 @@ export function AddAction(action: ProgressAction): number {
 	return 0;
 }
 
-export function ActionExists(action: ProgressAction): boolean {
+export function ActionExists(action: IProgressAction): boolean {
 	return Player.Actions.some((x) => x.title == action.title);
 }
 
@@ -97,7 +71,7 @@ export function RemoveAction(id: string) {
 	}
 }
 
-export function RemoveLastAction(): ProgressAction | null {
+export function RemoveLastAction(): IProgressAction | null {
 	if (Player.Actions.length > 0) {
 		const removedAction = Player.Actions.shift();
 		Player.Actions = Player.Actions;
@@ -106,6 +80,6 @@ export function RemoveLastAction(): ProgressAction | null {
 	return null;
 }
 
-export function PeekLastAction(): ProgressAction | null {
+export function PeekLastAction(): IProgressAction | null {
 	return Player.Actions.length > 0 ? Player.Actions[0] : null;
 }

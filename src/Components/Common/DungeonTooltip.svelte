@@ -33,7 +33,9 @@
 			{#each data.requirements as [requirement, isMet]}
 				<h6 class={isMet() ? "text-green-300" : "text-red-500"}>
 					{$_(requirement.subject)}
-					{$_(requirement.predicate)}
+					{#each requirement.predicate as predicate}
+						{$_(predicate)}
+					{/each}
 				</h6>
 			{/each}
 		{/if}
@@ -43,7 +45,33 @@
 			{#each data.effects as effect}
 				<h6>
 					{$_(effect.subject)}
-					{$_(effect.predicate)}
+					{#each effect.predicate as predicate}
+						{$_(predicate)}
+					{/each}
+				</h6>
+			{/each}
+		{/if}
+
+		{#if data.Rewards && data.Rewards.length > 0}
+			<h6 class="font-bold mt-3">Rewards:</h6>
+			{#each data.Rewards as effect}
+				<h6>
+					{$_(effect.subject)}
+					{#each effect.predicate as predicate}
+						{$_(predicate)}
+					{/each}
+				</h6>
+			{/each}
+		{/if}
+
+		{#if data.CompletionRewards && data.CompletionRewards.length > 0}
+			<h6 class="font-bold mt-3">First Time Completion:</h6>
+			{#each data.CompletionRewards as effect}
+				<h6>
+					{$_(effect.subject)}
+					{#each effect.predicate as predicate}
+						{$_(predicate)}
+					{/each}
 				</h6>
 			{/each}
 		{/if}

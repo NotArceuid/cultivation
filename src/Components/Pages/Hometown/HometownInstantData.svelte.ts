@@ -13,10 +13,10 @@ export const HometownInstantData: IAction[] = $state<IAction[]>([
 		sum: 0,
 		requirements: [
 			[
-				{ subject: `>${0.75}`, predicate: "stats.energy.title" },
+				{ subject: `>${0.75}`, predicate: ["stats.energy.title"] },
 				() => Player.Energy >= 0.75,
 			],
 		],
-		effects: [{ subject: `+${1}`, predicate: "stats.strength.title" }],
+		effects: [{ subject: `+${1}`, predicate: ["stats.strength.title"] }],
 	},
 ]);

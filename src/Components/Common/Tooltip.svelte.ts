@@ -1,10 +1,12 @@
 import { mount, unmount, type Component, type ComponentProps } from "svelte";
-import type { IAction, IInfo, ProgressAction } from "../../Game/Action.svelte";
+import type { IAction, IInfo, IProgressAction, IProgressInfo } from "../../Game/Action.svelte";
 import InfoTooltip from "./InfoTooltip.svelte";
 import ProgressTooltip from "./ProgressTooltip.svelte";
 import ActionTooltip from "./ActionTooltip.svelte";
 import type { IDungeonInfo } from "../../Game/Combat/Combat.svelte";
 import DungeonTooltip from "./DungeonTooltip.svelte";
+import ProgressInfoTooltip from './ProgressInfoTooltip.svelte';
+import ProgressActionTooltip from './ProgressTooltip.svelte';
 
 type TooltipComponent =
 	| ProgressTooltip
@@ -75,8 +77,12 @@ function createTooltipHandlers<T>(
 	};
 }
 
-export function useProgressTooltip(element: HTMLElement, data: ProgressAction) {
-	return createTooltipHandlers(element, data, ProgressTooltip);
+export function useProgressActionTooltip(element: HTMLElement, data: IProgressAction) {
+	return createTooltipHandlers(element, data, ProgressActionTooltip);
+}
+
+export function useProgressInfoTooltip(element: HTMLElement, data: IProgressInfo) {
+	return createTooltipHandlers((element), data, ProgressInfoTooltip)
 }
 
 export function useInfoTooltip(element: HTMLElement, data: IInfo) {

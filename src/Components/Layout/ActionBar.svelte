@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { ProgressAction, RemoveAction } from "../../Game/Action.svelte";
+	import { RemoveAction, type IProgressAction } from "../../Game/Action.svelte";
 	import Progressbar from "../Common/Progressbar.svelte";
 	import { _ } from "svelte-i18n";
-	import { useProgressTooltip } from "../Common/Tooltip.svelte.ts";
+	import { useProgressActionTooltip } from "../Common/Tooltip.svelte.ts";
 
-	let { action }: { action: ProgressAction } = $props();
+	let { action }: { action: IProgressAction } = $props();
 	function cancel(id: string): void {
 		RemoveAction(id);
 	}
 </script>
 
-<div class="flex flex-row" use:useProgressTooltip={action}>
+<div class="flex flex-row" use:useProgressActionTooltip={action}>
 	<button
 		class="border border-black h-6 w-6 text-center align-middle bg-red-400"
 		onclick={() => cancel(action.title)}>x</button

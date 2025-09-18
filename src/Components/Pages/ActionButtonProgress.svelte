@@ -4,18 +4,18 @@
 		AddAction,
 		IsRequirementsMet,
 		RemoveAction,
-		type ProgressAction,
+		type IProgressAction,
 	} from "../../Game/Action.svelte.ts";
 	import Progressbar from "../Common/Progressbar.svelte";
 	import type { ProgressBarOptions } from "../Common/Progressbar.svelte.ts";
-	import { useProgressTooltip } from "../Common/Tooltip.svelte.ts";
+	import { useActionTooltip, useProgressActionTooltip } from "../Common/Tooltip.svelte.ts";
 	import { _ } from "svelte-i18n";
 	let {
 		data,
 		buttonClass,
 		opts,
 	}: {
-		data: ProgressAction;
+		data: IProgressAction;
 		buttonClass?: string;
 		opts?: ProgressBarOptions;
 	} = $props();
@@ -40,7 +40,7 @@
 		? 'bg-gray-200 cursor-default'
 		: 'cursor-pointer'} "
 	disabled={isDisabled}
-	use:useProgressTooltip={data}
+	use:useActionTooltip={data}
 	onclick={() => addAction()}
 >
 	<h1 class="mb-3 {opts?.labelClass} font-semibold">{$_(data.title)}</h1>

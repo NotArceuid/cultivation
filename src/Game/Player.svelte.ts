@@ -1,8 +1,9 @@
-import type { ProgressAction } from "./Action.svelte";
+import type { IProgressAction } from "./Action.svelte";
 import { ElementTypes, type IElement } from "./Content/Elements";
 import { Update } from "./Game";
 
 export const Player = $state<{
+	Name: string,
 	Magicules: number;
 	MaxMagicules: number;
 	Gold: number;
@@ -11,24 +12,25 @@ export const Player = $state<{
 	Health: number;
 	MaxHealth: number;
 	Stars: number;
-	Actions: ProgressAction[];
+	Actions: IProgressAction[];
 	MaxAction: number;
 	Energy: number;
 	MaxEnergy: number;
 	Elements: IElement[];
 }>({
+	Name: 'Player',
 	Magicules: 0,
 	MaxMagicules: 100,
 	Gold: 100,
 	Intelligence: 1,
 	Strength: 1,
-	Health: 1,
+	Health: 100,
 	MaxHealth: 100,
 	Stars: 1,
 	Actions: [],
 	MaxAction: 1,
-	Energy: 0,
-	MaxEnergy: 3,
+	Energy: 10,
+	MaxEnergy: 10,
 	Elements: [
 		{ ElementType: ElementTypes.Fire, Level: 0, Progress: 100, Stars: 0 },
 		{ ElementType: ElementTypes.Earth, Level: 0, Progress: 0, Stars: 0 },
@@ -62,7 +64,9 @@ export function AddIntelligence(amount: number) {
 
 export function AddStrength(amount: number) {}
 
-export function AddHealth(amount: number) {}
+export function AddHealth(amount: number) {
+	Player.Health = Math.max(Player.Health + amount, Player.MaxHealth);
+}
 
 Update.add(() => {
 	// AddEnergy(1);

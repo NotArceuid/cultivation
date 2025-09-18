@@ -1,5 +1,8 @@
 <script>
+	import { Player } from '../../../Game/Player.svelte.ts';
+	import ActionButtonEnterCombat from "../ActionButtonEnterCombat.svelte";
 	import HometownButtonProgress from "../ActionButtonProgress.svelte";
+	import { HometownDungeonData } from "./HometownDungeonData.svelte.ts";
 	import { HometownProgressData } from "./HometownProgressData.svelte.ts";
 
 	const gridStyle = "flex flex-col m-2 p-1 border-2 ";
@@ -12,15 +15,18 @@
 			<h1 class={gridLabel}>Repeatable Actions:</h1>
 
 			<HometownButtonProgress
-				data={HometownProgressData[0]}
-				opts={{ barBackgroundClass: "bg-gray-200" }}
-			/>
-			<HometownButtonProgress
 				data={HometownProgressData[1]}
 				opts={{
 					barProgressClass: "bg-blue-300",
 				}}
 			/>
+
+			{#if Player.Intelligence > 1}
+			<HometownButtonProgress
+				data={HometownProgressData[0]}
+				opts={{ barBackgroundClass: "bg-gray-200" }}
+			/>				
+			{/if}
 		</div>
 		<div class=" w-3/12 {gridStyle}">
 			<h1 class={gridLabel}>Instant Actions:</h1>
@@ -34,7 +40,7 @@
 		</div>
 		<div class="w-1/6 {gridStyle}">
 			<h1 class={gridLabel}>Combat:</h1>
-			<button>Fight bullies</button>
+			<ActionButtonEnterCombat data={HometownDungeonData[0]} />
 		</div>
 	</div>
 </div>

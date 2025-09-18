@@ -10,7 +10,7 @@ export const HometownProgressData: ProgressAction[] = $state<ProgressAction[]>([
 	{
 		title: "locations.hometown.rest.title",
 		description: "locations.hometown.rest.description",
-		effects: [{ subject: `+${1}`, predicate: "stats.energy.title" }],
+		effects: [{ subject: `+${1}`, predicate: ["stats.energy.title"] }],
 		attribute: "locations.hometown.rest.attribute",
 		requirements: [],
 		sum: 0,
@@ -32,13 +32,13 @@ export const HometownProgressData: ProgressAction[] = $state<ProgressAction[]>([
 		title: "locations.hometown.goschool.title",
 		description: "locations.hometown.goschool.description",
 		effects: [
-			{ subject: `+${1}`, predicate: "stats.knowledge.title" },
-			{ subject: `-${0.25}`, predicate: "stats.energy.title" },
+			{ subject: `+${1}`, predicate: ["stats.knowledge.title"] },
+			{ subject: `-${0.25}`, predicate: ["stats.energy.title"] },
 		],
 		attribute: "locations.hometown.goschool.attribute",
 		requirements: [
 			[
-				{ subject: `>${0.25}`, predicate: "stats.energy.title" },
+				{ subject: `>${0.25}`, predicate: ["stats.energy.title"] },
 				() => Player.Energy >= 0.25,
 			],
 		],

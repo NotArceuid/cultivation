@@ -63,7 +63,13 @@
 			"goschool": {
 				"title": "Go to school",
 				"attribute": "Action, Knowledge",
-				"description": "Stinky nerds"
+				"description": "Aquire Knowledge. Become smarter.. "
+			},
+			"fightbullies": {
+				"title": "Fight Bullies",
+				"attribute": "Combat, Dungeon",
+				"description": "You decided to fight back against the very people whom stole your lunch money.. ",
+				"rewards": ["Unlocks New Content (Very good)"]
 			}
 		},
 		"mindscape": {
