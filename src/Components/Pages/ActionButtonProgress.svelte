@@ -16,13 +16,15 @@
 		opts,
 	}: {
 		data: ProgressAction;
-		disabledStyle?: string;
 		buttonClass?: string;
 		opts?: ProgressBarOptions;
 	} = $props();
 
-	const isDisabled = !IsRequirementsMet(data); // just like my mind
-	console.log(isDisabled + data.title);
+	let isDisabled = $state(!IsRequirementsMet(data)); // just like my mind
+
+	$effect(() => {
+		isDisabled = !IsRequirementsMet(data);
+	});
 
 	function addAction() {
 		if (ActionExists(data)) {

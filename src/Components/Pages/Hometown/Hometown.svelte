@@ -1,10 +1,6 @@
 <script>
-	import {
-		HometownInstantData,
-		HometownProgressData,
-	} from "./Hometown.svelte.ts";
-	import HometownButtonProgress from "./ActionButtonProgress.svelte";
-	import ActionButtonInstant from "./ActionButtonInstant.svelte";
+	import HometownButtonProgress from "../ActionButtonProgress.svelte";
+	import { HometownProgressData } from "./HometownProgressData.svelte.ts";
 
 	const gridStyle = "flex flex-col m-2 p-1 border-2 ";
 	const gridLabel = "ml-2 text-lg";
@@ -12,11 +8,6 @@
 
 <div class="absolute min-w-full min-h-full p-5">
 	<div class="flex flex-row">
-		<div class=" w-3/12 {gridStyle}">
-			<h1 class={gridLabel}>Instant Actions:</h1>
-
-			<ActionButtonInstant data={HometownInstantData[0]} />
-		</div>
 		<div class=" w-3/12 {gridStyle}">
 			<h1 class={gridLabel}>Repeatable Actions:</h1>
 
@@ -27,11 +18,16 @@
 			<HometownButtonProgress
 				data={HometownProgressData[1]}
 				opts={{
-					barBackgroundClass: "bg-gray-200",
-					barProgressClass: "bg-green-200",
+					barProgressClass: "bg-blue-300",
 				}}
 			/>
 		</div>
+		<div class=" w-3/12 {gridStyle}">
+			<h1 class={gridLabel}>Instant Actions:</h1>
+
+			<!-- <ActionButtonInstant data={HometownInstantData[0]} /> -->
+		</div>
+
 		<div class=" w-3/12 {gridStyle}">
 			<h1 class="{gridLabel} ">Tasks:</h1>
 			<button>Get hit by a truck</button>

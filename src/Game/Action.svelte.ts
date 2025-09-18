@@ -39,9 +39,6 @@ export class ProgressAction implements IAction, IInfo {
 
 export interface IAction extends IInfo {
 	onSuccess: () => void;
-	title: string;
-	attribute: string;
-	description: string;
 	sum: number;
 	effects: EffectFormat[];
 	requirements: [EffectFormat, () => boolean][];
@@ -54,13 +51,12 @@ export interface IInfo {
 }
 
 export function IsRequirementsMet(data: IAction): boolean {
-	return data.requirements.every(([x, e]) => e() == true);
+	return data.requirements.every(([_, e]) => e() == true);
 }
 
 export interface EffectFormat {
-	prefix: string;
-	suffix: string;
-	value: number;
+	subject: string;
+	predicate: string;
 }
 
 Update.add(() => {

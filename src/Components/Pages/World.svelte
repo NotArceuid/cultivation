@@ -4,9 +4,9 @@
 	import { ChangePage, CurrentLocation, LocationEnum } from "./Pages";
 	import { _ } from "svelte-i18n";
 	import { useInfoTooltip } from "../Common/Tooltip.svelte.ts";
-	import { HometownInfo } from "./Hometown.svelte.ts";
 	import { MindscapeInfo } from "./Mindscape.svelte.ts";
-	import Hometown from "./Hometown.svelte";
+	import Hometown from "./Hometown/Hometown.svelte";
+	import { HometownInfo } from "./Hometown/Hometown.svelte.ts";
 
 	onMount((): void => {
 		CurrentLocation.subscribe((x) => {

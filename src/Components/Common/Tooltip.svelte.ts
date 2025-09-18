@@ -1,14 +1,34 @@
-import { mount, unmount } from "svelte";
+import { mount, unmount, type Component, type ComponentProps } from "svelte";
 import type { IAction, IInfo, ProgressAction } from "../../Game/Action.svelte";
 import InfoTooltip from "./InfoTooltip.svelte";
 import ProgressTooltip from "./ProgressTooltip.svelte";
 import ActionTooltip from "./ActionTooltip.svelte";
+import type { IDungeonInfo } from "../../Game/Combat/Combat.svelte";
+import DungeonTooltip from "./DungeonTooltip.svelte";
 
-let tooltipComponent: ProgressTooltip | InfoTooltip | null;
+type TooltipComponent =
+	| ProgressTooltip
+	| InfoTooltip
+	| ActionTooltip
+	| DungeonTooltip
+	| null;
 
-export function useProgressTooltip(element: HTMLElement, data: ProgressAction) {
-	let props = $state({
-		data: data,
+type Position = { x: number; y: number };
+
+let tooltipComponent: TooltipComponent = null;
+
+interface TooltipProps<T> {
+	data: T;
+	position: Position;
+}
+
+function createTooltipHandlers<T>(
+	element: HTMLElement,
+	data: T,
+	TooltipComponent: any,
+) {
+	const props: TooltipProps<T> = $state({
+		data,
 		position: { x: 0, y: 0 },
 	});
 
@@ -18,11 +38,11 @@ export function useProgressTooltip(element: HTMLElement, data: ProgressAction) {
 			tooltipComponent = null;
 		}
 
-		props.position = event;
+		props.position = { x: event.pageX, y: event.pageY };
 
-		tooltipComponent = mount(ProgressTooltip, {
+		tooltipComponent = mount(TooltipComponent, {
 			target: document.body,
-			props: props,
+			props,
 		});
 	}
 
@@ -31,7 +51,9 @@ export function useProgressTooltip(element: HTMLElement, data: ProgressAction) {
 	}
 
 	function mouseLeave() {
-		if (tooltipComponent) unmount(tooltipComponent);
+		if (tooltipComponent) {
+			unmount(tooltipComponent);
+		}
 		tooltipComponent = null;
 	}
 
@@ -44,90 +66,27 @@ export function useProgressTooltip(element: HTMLElement, data: ProgressAction) {
 			element.removeEventListener("mouseover", mouseOver);
 			element.removeEventListener("mouseleave", mouseLeave);
 			element.removeEventListener("mousemove", mouseMove);
+
+			if (tooltipComponent) {
+				unmount(tooltipComponent);
+				tooltipComponent = null;
+			}
 		},
 	};
+}
+
+export function useProgressTooltip(element: HTMLElement, data: ProgressAction) {
+	return createTooltipHandlers(element, data, ProgressTooltip);
 }
 
 export function useInfoTooltip(element: HTMLElement, data: IInfo) {
-	let props = $state({
-		data: data,
-		position: { x: 0, y: 0 },
-	});
-
-	function mouseOver(event: MouseEvent) {
-		if (tooltipComponent) {
-			unmount(tooltipComponent);
-			tooltipComponent = null;
-		}
-
-		props.position = event;
-
-		tooltipComponent = mount(InfoTooltip, {
-			target: document.body,
-			props: props,
-		});
-	}
-
-	function mouseMove(event: MouseEvent) {
-		props.position = { x: event.pageX, y: event.pageY };
-	}
-
-	function mouseLeave() {
-		if (tooltipComponent) unmount(tooltipComponent);
-		tooltipComponent = null;
-	}
-
-	element.addEventListener("mouseover", mouseOver);
-	element.addEventListener("mouseleave", mouseLeave);
-	element.addEventListener("mousemove", mouseMove);
-
-	return {
-		destroy() {
-			element.removeEventListener("mouseover", mouseOver);
-			element.removeEventListener("mouseleave", mouseLeave);
-			element.removeEventListener("mousemove", mouseMove);
-		},
-	};
+	return createTooltipHandlers(element, data, InfoTooltip);
 }
 
 export function useActionTooltip(element: HTMLElement, data: IAction) {
-	let props = $state({
-		data: data,
-		position: { x: 0, y: 0 },
-	});
+	return createTooltipHandlers(element, data, ActionTooltip);
+}
 
-	function mouseOver(event: MouseEvent) {
-		if (tooltipComponent) {
-			unmount(tooltipComponent);
-			tooltipComponent = null;
-		}
-
-		props.position = event;
-
-		tooltipComponent = mount(ActionTooltip, {
-			target: document.body,
-			props: props,
-		});
-	}
-
-	function mouseMove(event: MouseEvent) {
-		props.position = { x: event.pageX, y: event.pageY };
-	}
-
-	function mouseLeave() {
-		if (tooltipComponent) unmount(tooltipComponent);
-		tooltipComponent = null;
-	}
-
-	element.addEventListener("mouseover", mouseOver);
-	element.addEventListener("mouseleave", mouseLeave);
-	element.addEventListener("mousemove", mouseMove);
-
-	return {
-		destroy() {
-			element.removeEventListener("mouseover", mouseOver);
-			element.removeEventListener("mouseleave", mouseLeave);
-			element.removeEventListener("mousemove", mouseMove);
-		},
-	};
+export function useDungeonTooltip(element: HTMLElement, data: IDungeonInfo) {
+	return createTooltipHandlers(element, data, DungeonTooltip);
 }

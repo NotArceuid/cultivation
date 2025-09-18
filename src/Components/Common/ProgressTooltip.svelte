@@ -38,9 +38,8 @@
 			<h6 class="font-bold mt-3">Requirements:</h6>
 			{#each data.requirements as [requirement, isMet]}
 				<h6 class={isMet() ? "text-green-300" : "text-red-500"}>
-					{$_(requirement.prefix)}
-					{requirement.value}
-					{$_(requirement.suffix)}
+					{$_(requirement.subject)}
+					{$_(requirement.predicate)}
 				</h6>
 			{/each}
 		{/if}
@@ -49,9 +48,8 @@
 			<h6 class="font-bold mt-3">Effects:</h6>
 			{#each data.effects as effect}
 				<h6>
-					{$_(effect.prefix)}
-					{effect.value}
-					{$_(effect.suffix)}
+					{$_(effect.subject)}
+					{$_(effect.predicate)}
 				</h6>
 			{/each}
 		{/if}

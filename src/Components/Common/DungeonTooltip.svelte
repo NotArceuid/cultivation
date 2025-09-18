@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { _ } from "svelte-i18n";
 	import type { Vector2 } from "../../Game/Shared/Vector.js";
-	import { type IAction, type IInfo } from "../../Game/Action.svelte.js";
+	import type { IDungeonInfo } from "../../Game/Combat/Combat.svelte.js";
 
 	let {
 		data,
 		position,
 	}: {
-		data: IAction;
+		data: IDungeonInfo;
 		position: Vector2;
 	} = $props();
 

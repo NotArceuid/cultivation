@@ -1,15 +1,10 @@
 <script lang="ts">
-	import {
-		IsRequirementsMet,
-		UseAction,
-		type IAction,
-	} from "../../Game/Action.svelte.ts";
-	import {
-		useActionTooltip,
-		useInfoTooltip,
-	} from "../Common/Tooltip.svelte.ts";
+	import { IsRequirementsMet, UseAction } from "../../Game/Action.svelte.ts";
+
 	import { _ } from "svelte-i18n";
-	let { data }: { data: IAction } = $props();
+	import type { IDungeonInfo } from "../../Game/Combat/Combat.svelte.ts";
+	import { useDungeonTooltip } from "../Common/Tooltip.svelte.ts";
+	let { data }: { data: IDungeonInfo } = $props();
 
 	let isDisabled = $state(false);
 	$effect(() => {
@@ -24,7 +19,7 @@
 		? 'bg-gray-200 cursor-default'
 		: 'cursor-pointer'} "
 	disabled={isDisabled}
-	use:useActionTooltip={data}
+	use:useDungeonTooltip={data}
 	onclick={() => UseAction(data)}
 >
 	<h1 class="mb-3 font-semibold">{$_(data.title)}</h1>
