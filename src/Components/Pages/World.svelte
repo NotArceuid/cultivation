@@ -14,7 +14,7 @@
 		CurrentLocation.subscribe((x) => {
 			ChangePage(x, "locations");
 		});
-
+		
 		ChangePage(LocationEnum.Hometown, "locations");
 	});
 
@@ -42,8 +42,8 @@
 		</div>
 	</div>
 		<div id="locations" class="relative w-full">
-			{#if isInCombat}
-				<Combat data={dungeonInfo!}/>
+			{#if $isInCombat && dungeonInfo != null}
+				<Combat data={dungeonInfo}/>
 			{:else}
 				<Hometown /> 
 				<Mindscape />

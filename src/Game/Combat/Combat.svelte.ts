@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 import type { EffectFormat, IAction, IInfo, IProgress, IProgressAction, IProgressInfo } from "../Action.svelte";
 import type { ElementTypes } from '../Content/Elements';
 
-export let isInCombat = writable();
+export let isInCombat = writable<boolean>(false);
 export let currentDungeon = writable<Dungeon>({
 	Enemies: [],
 	Rewards: [],
