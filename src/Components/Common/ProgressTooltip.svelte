@@ -18,7 +18,7 @@
 </script>
 
 <div
-	class="tooltip pointer-events-none absolute pt-2 pb-2 border-2 min-w-sm max-w-sm shadow-lg bg-white"
+	class="tooltip pointer-events-none absolute pt-2 pb-2 border min-w-sm max-w-sm shadow-lg bg-white"
 	style="{style} "
 >
 	<div class="border-b-2 p-2 justify-between flex w-full h-full">

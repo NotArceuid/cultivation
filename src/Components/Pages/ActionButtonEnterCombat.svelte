@@ -2,7 +2,13 @@
 	import { IsRequirementsMet, UseAction } from "../../Game/Action.svelte.ts";
 
 	import { _ } from "svelte-i18n";
-	import { EnterCombat, type IDungeonInfo } from "../../Game/Combat/Combat.svelte.ts";
+	import {
+	currentDungeon,
+		EnterCombat,
+		ExitDungeon,
+		isInCombat,
+		type IDungeonInfo,
+	} from "../../Game/Combat/Combat.svelte.ts";
 	import { useDungeonTooltip } from "../Common/Tooltip.svelte.ts";
 	let { data }: { data: IDungeonInfo } = $props();
 
@@ -20,12 +26,20 @@
 <div class=""></div>
 
 <button
-	class="h-12 border-2 p-2 m-2 {isDisabled
+	class="h-12 border p-2 m-2 {isDisabled
 		? 'bg-gray-200 cursor-default'
 		: 'cursor-pointer'} "
 	disabled={isDisabled}
 	use:useDungeonTooltip={data}
-	onclick={() => enterCombat()}
+	onclick={() => {
+		if (isInCombat) {
+			if ($currentDungeon.CancelAction)
+				$currentDungeon.CancelAction();
+			
+			ExitDungeon($currentDungeon)
+			enterCombat();
+		}
+	}}
 >
 	<h1 class="mb-3 font-semibold">{$_(data.title)}</h1>
 </button>

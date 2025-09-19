@@ -3,7 +3,7 @@ import { ElementTypes, type IElement } from "./Content/Elements";
 import { Update } from "./Game";
 
 export const Player = $state<{
-	Name: string,
+	Name: string;
 	Magicules: number;
 	MaxMagicules: number;
 	Gold: number;
@@ -18,7 +18,7 @@ export const Player = $state<{
 	MaxEnergy: number;
 	Elements: IElement[];
 }>({
-	Name: 'Player',
+	Name: "Player",
 	Magicules: 0,
 	MaxMagicules: 100,
 	Gold: 100,

@@ -1,42 +1,46 @@
-import { writable } from 'svelte/store';
-import { AddAction, RemoveAction, type EffectFormat, type IAction, type IInfo, type IProgress, type IProgressAction, type IProgressInfo } from "../Action.svelte";
-import type { ElementTypes } from '../Content/Elements';
-import { InvokeableEvent } from '../Shared/Events';
+import { writable } from "svelte/store";
+import {
+	AddAction,
+	RemoveAction,
+	type EffectFormat,
+	type IAction,
+	type IInfo,
+	type IProgress,
+	type IProgressAction,
+	type IProgressInfo,
+} from "../Action.svelte";
+import type { ElementTypes } from "../Content/Elements";
+import { InvokeableEvent } from "../Shared/Events";
 
 export let isInCombat = writable<boolean>(false);
 export let currentDungeon = writable<Dungeon>({
 	Waves: [[]],
 	Rewards: [],
 	CompletionRewards: [],
-	title: '',
-	attribute: '',
-	description: '',
-	onSuccess: function (): void
-	{
-		throw new Error( 'Function not implemented.' );
+	title: "",
+	attribute: "",
+	description: "",
+	onSuccess: function (): void {
+		throw new Error("Function not implemented.");
 	},
 	sum: 0,
 	effects: [],
-	requirements: []
-})
+	requirements: [],
+});
 
 export function EnterCombat(dungeon: IDungeonInfo) {
 	isInCombat.set(true);
-	currentDungeon.set(new Dungeon(dungeon)); 
-	AddAction(new CombatAction(dungeon))
+	currentDungeon.set(new Dungeon(dungeon));
+	AddAction(new CombatAction(dungeon));
 }
 
-export function DungeonCompleted(dungeon: IDungeonInfo) {
-
-}
+export function DungeonCompleted(dungeon: IDungeonInfo) {}
 
 export function ExitDungeon(dungeon?: IDungeonInfo) {
 	isInCombat.set(false);
 	dungeon = undefined;
 	console.log("eqweqweqwwe");
-	
 }
-
 
 export class Dungeon implements IDungeonInfo {
 	Waves: Enemy[][]; // The waves is wuthering :)
@@ -46,10 +50,10 @@ export class Dungeon implements IDungeonInfo {
 	attribute: string;
 	description: string;
 	onSuccess: () => void;
-	sum: number = $state(0) // Sum == Waves
+	sum: number = $state(0); // Sum == Waves
 	effects: EffectFormat[];
-	requirements: [ EffectFormat, () => boolean ][];
-	CancelAction?: () => void = () => {} 
+	requirements: [EffectFormat, () => boolean][];
+	CancelAction?: () => void = () => {};
 	constructor(dungeon: IDungeonInfo) {
 		this.Waves = Dungeon.CreateWaves(dungeon.Waves);
 		this.Rewards = dungeon.Rewards;
@@ -62,13 +66,13 @@ export class Dungeon implements IDungeonInfo {
 		this.requirements = dungeon.requirements;
 		this.CancelAction = () => ExitDungeon(dungeon);
 	}
-	
+
 	private static CreateEnemies(enemies: IEnemy[]): Enemy[] {
- 		return enemies.map(enemy => CreateEnemy(enemy));
+		return enemies.map((enemy) => CreateEnemy(enemy));
 	}
 
 	private static CreateWaves(waves: IEnemy[][]): Enemy[][] {
-    		return waves.map(wave => this.CreateEnemies(wave));
+		return waves.map((wave) => this.CreateEnemies(wave));
 	}
 }
 export function CreateEnemy(enemy: IEnemy): Enemy {
@@ -83,8 +87,7 @@ export class Enemy implements IEnemy {
 	public Info: IInfo;
 	public HealthRegen: number;
 
-	constructor(enemy: IEnemy) 
-	{
+	constructor(enemy: IEnemy) {
 		this.Health = enemy.Health;
 		this.Info = enemy.Info;
 		this.Abilities = enemy.Abilities;
@@ -92,13 +95,15 @@ export class Enemy implements IEnemy {
 		this.AttackSpeed = enemy.AttackSpeed;
 
 		if (enemy.Health.nextTick == null)
-			enemy.Health.nextTick = () => this.RegenerateHealth()
+			enemy.Health.nextTick = () => this.RegenerateHealth();
 	}
-	
-	RegenerateHealth()
-	{
-		this.Health.progress = Math.min(this.Health.progress + this.HealthRegen, this.Health.maxProgress);
-	} 
+
+	RegenerateHealth() {
+		this.Health.progress = Math.min(
+			this.Health.progress + this.HealthRegen,
+			this.Health.maxProgress,
+		);
+	}
 }
 
 export interface IEnemy {
@@ -107,17 +112,27 @@ export interface IEnemy {
 	AttackSpeed: number;
 	Abilities: Abilities[];
 	Info: IInfo;
-} 
+}
 
 abstract class Abilities implements IProgressAction {
 	title: string;
 	attribute: string;
 	description: string;
-	elementType : ElementTypes;
+	elementType: ElementTypes;
 
-	constructor(elementType: ElementTypes, title: string, attribute : string, description: string, progress: number, maxProgress: number, nextTick: () => void, onSuccess: () => void,
-			effects: EffectFormat[], sum: number, requirements: [ EffectFormat, () => boolean ][])
-	{
+	constructor(
+		elementType: ElementTypes,
+		title: string,
+		attribute: string,
+		description: string,
+		progress: number,
+		maxProgress: number,
+		nextTick: () => void,
+		onSuccess: () => void,
+		effects: EffectFormat[],
+		sum: number,
+		requirements: [EffectFormat, () => boolean][],
+	) {
 		this.elementType = elementType;
 		this.title = title;
 		this.attribute = attribute;
@@ -137,7 +152,7 @@ abstract class Abilities implements IProgressAction {
 	onSuccess: () => void;
 	sum: number;
 	effects: EffectFormat[];
-	requirements: [ EffectFormat, () => boolean ][];
+	requirements: [EffectFormat, () => boolean][];
 }
 
 export interface IDungeonInfo extends IInfo, IAction {
@@ -149,15 +164,15 @@ export interface IDungeonInfo extends IInfo, IAction {
 export class CombatAction implements IProgressAction {
 	progress!: number;
 	maxProgress!: number;
-	nextTick?: ( () => void ) | undefined;
+	nextTick?: (() => void) | undefined;
 	onSuccess: () => void;
 	sum: number;
 	effects: EffectFormat[];
-	requirements: [ EffectFormat, () => boolean ][];
+	requirements: [EffectFormat, () => boolean][];
 	title: string;
 	attribute: string;
 	description: string;
-	CancelAction?: ( () => void ) | undefined;
+	CancelAction?: (() => void) | undefined;
 	constructor(dungeonInfo: IDungeonInfo) {
 		this.title = dungeonInfo.title;
 		this.attribute = dungeonInfo.attribute;
@@ -165,10 +180,10 @@ export class CombatAction implements IProgressAction {
 		this.onSuccess = dungeonInfo.onSuccess;
 		this.effects = dungeonInfo.effects;
 		this.sum = dungeonInfo.sum;
-		this.requirements = dungeonInfo.requirements;	
-	
+		this.requirements = dungeonInfo.requirements;
+
 		this.CancelAction = () => {
 			ExitDungeon(dungeonInfo);
-		}	
+		};
 	}
 }

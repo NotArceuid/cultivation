@@ -20,7 +20,7 @@
 <div class=""></div>
 
 <button
-	class="h-12 border-2 p-2 m-2 {isDisabled
+	class="h-12 border p-2 m-2 {isDisabled
 		? 'bg-gray-200 cursor-default'
 		: 'cursor-pointer'} "
 	disabled={isDisabled}

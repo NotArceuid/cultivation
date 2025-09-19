@@ -1,4 +1,7 @@
-import { RemoveAction, type IProgressAction } from "../../../Game/Action.svelte";
+import {
+	RemoveAction,
+	type IProgressAction,
+} from "../../../Game/Action.svelte";
 import {
 	AddEnergy,
 	AddIntelligence,
@@ -6,7 +9,9 @@ import {
 	RemoveEnergy,
 } from "../../../Game/Player.svelte";
 
-export const HometownProgressData: IProgressAction[] = $state<IProgressAction[]>([
+export const HometownProgressData: IProgressAction[] = $state<
+	IProgressAction[]
+>([
 	{
 		title: "locations.hometown.rest.title",
 		description: "locations.hometown.rest.description",

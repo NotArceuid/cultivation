@@ -1,13 +1,18 @@
 import { mount, unmount, type Component, type ComponentProps } from "svelte";
-import type { IAction, IInfo, IProgressAction, IProgressInfo } from "../../Game/Action.svelte";
+import type {
+	IAction,
+	IInfo,
+	IProgressAction,
+	IProgressInfo,
+} from "../../Game/Action.svelte";
 import InfoTooltip from "./InfoTooltip.svelte";
 import ProgressTooltip from "./ProgressTooltip.svelte";
 import ActionTooltip from "./ActionTooltip.svelte";
 import type { IDungeonInfo, IEnemy } from "../../Game/Combat/Combat.svelte";
 import DungeonTooltip from "./DungeonTooltip.svelte";
-import ProgressInfoTooltip from './ProgressInfoTooltip.svelte';
-import ProgressActionTooltip from './ProgressTooltip.svelte';
-import EnemyTooltip from './EnemyTooltip.svelte';
+import ProgressInfoTooltip from "./ProgressInfoTooltip.svelte";
+import ProgressActionTooltip from "./ProgressTooltip.svelte";
+import EnemyTooltip from "./EnemyTooltip.svelte";
 
 type TooltipComponent =
 	| ProgressTooltip
@@ -78,12 +83,18 @@ function createTooltipHandlers<T>(
 	};
 }
 
-export function useProgressActionTooltip(element: HTMLElement, data: IProgressAction) {
+export function useProgressActionTooltip(
+	element: HTMLElement,
+	data: IProgressAction,
+) {
 	return createTooltipHandlers(element, data, ProgressActionTooltip);
 }
 
-export function useProgressInfoTooltip(element: HTMLElement, data: IProgressInfo) {
-	return createTooltipHandlers((element), data, ProgressInfoTooltip)
+export function useProgressInfoTooltip(
+	element: HTMLElement,
+	data: IProgressInfo,
+) {
+	return createTooltipHandlers(element, data, ProgressInfoTooltip);
 }
 
 export function useInfoTooltip(element: HTMLElement, data: IInfo) {
@@ -99,5 +110,5 @@ export function useDungeonTooltip(element: HTMLElement, data: IDungeonInfo) {
 }
 
 export function useEnemyTooltip(element: HTMLElement, data: IEnemy) {
-	return createTooltipHandlers(element, data, EnemyTooltip)
+	return createTooltipHandlers(element, data, EnemyTooltip);
 }

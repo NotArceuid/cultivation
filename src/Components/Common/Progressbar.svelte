@@ -11,18 +11,36 @@
 	} = $props();
 
 	let amount = $derived(((data.progress / data.maxProgress) * 100).toFixed(2));
-	if (ops == null || ops.barProgressClass == null) {
-		ops = { barProgressClass: "bg-blue-300" };
+	if (!ops) {
+		ops = {
+			barBackgroundClass: "",
+			wrapperClass: "",
+			barProgressClass: "bg-blue-300",
+			height: 6,
+		};
+	} else {
+		ops = {
+			barBackgroundClass: ops.barBackgroundClass || "",
+			wrapperClass: ops.wrapperClass || "",
+			barProgressClass: ops.barProgressClass || "bg-blue-300",
+			height: typeof ops.height === "number" ? ops.height : 6,
+		};
 	}
+
+	console.log(ops.height);
 </script>
 
-<div class="flex relative min-h-6 {ops?.wrapperClass}">
-				<h6 class="absolute left-2 z-1">
-				{data.progress} / {data.maxProgress}
-			</h6>
-	<div
-		class="absolute {ops?.barProgressClass} h-full"
-		style="width: {amount}%"
-	></div>
-	<div class="border w-full h-full absolute {ops?.barBackgroundClass}"></div>
+<div class="flex relative min-h-{ops.height} {ops?.wrapperClass}">
+    <div class="absolute inset-0/12 font-semibold flex items-center z-1">
+        <h6 class="text-sm px-2">
+            {data.progress} / {data.maxProgress}
+        </h6>
+    </div>
+    
+    <div
+        class="absolute {ops?.barProgressClass} h-full"
+        style="width: {amount}%"
+    ></div>
+    
+    <div class="border w-full h-full absolute {ops?.barBackgroundClass}"></div>
 </div>

@@ -23,7 +23,7 @@
 	<div class="flex flex-row min-h-full ml-2 mr-2">
 		<VNavbar />
 		<div class="relative min-h-full w-9/12 flex flex-col" id="page-content">
-			<div class="border-2 h-18 border-l-0 border-r-0 border-t-0"></div>
+			<!-- <div class="border h-18 border-l-0 border-r-0 border-t-0"></div> -->
 			<World />
 		</div>
 

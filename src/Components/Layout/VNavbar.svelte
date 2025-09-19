@@ -6,7 +6,13 @@
 	import { useProgressInfoTooltip } from "../Common/Tooltip.svelte.ts";
 	import type { IProgressInfo } from "../../Game/Action.svelte.ts";
 
-	let energyData: IProgressInfo = $state({ progress: 0, maxProgress: 0, description: 'stats.energy.description', title: 'stats.energy.title', attribute: 'stats.energy.attribute'});
+	let energyData: IProgressInfo = $state({
+		progress: 0,
+		maxProgress: 0,
+		description: "stats.energy.description",
+		title: "stats.energy.title",
+		attribute: "stats.energy.attribute",
+	});
 
 	$effect(() => {
 		energyData.progress = Player.Energy;
@@ -15,18 +21,19 @@
 </script>
 
 <div
-	class="flex flex-col w-2/6 max-w-48 min-h-full border-2 border-t-0"
+	class="flex flex-col w-2/6 max-w-48 min-h-full border border-t-0"
 	id="vnavbarBtn"
 >
-	<div id="energyStats" class="flex-col">
-		<h6 class="text-center">Novice mage</h6>
+	<div id="energyStats" class="flex-col pt-2">
+		<h6 class="text-center text-lg m-4">Novice mage</h6>
 
 		<div class="relative" use:useProgressInfoTooltip={energyData}>
-			<Progressbar data={energyData} />
+			<Progressbar data={energyData} ops={{ height:10, barProgressClass: 'bg-green-300' }} />
 		</div>
-		<div>
-			<h6>{$_("stats.coins.title")}</h6>
-			<h6>{$_("stats.knowledge.title")}</h6>
+		<div class="p-2 border-b-2">
+			<h6>{$_("stats.coins.title")}: {Player.Gold}</h6>
+			<h6>{$_("stats.knowledge.title")}: {Player.Intelligence}</h6>
+			<h6>{$_("stats.strength.title")}: {Player.Strength}</h6>
 		</div>
 		<h6 class="text-blue-600" style={"visibility: hidden"}>B: 1000</h6>
 		<h6 class="text-red-600" style={"visibility: hidden"}>B: 1000</h6>
@@ -55,15 +62,6 @@
 		width: auto;
 		padding: 0.5rem 0.5rem;
 		border: 0;
-	}
-
-	#energyStats {
-		padding-top: 0.5rem;
-	}
-
-	#energyStats > h6 {
-		text-align: center;
-		font-size: medium;
 	}
 
 	button:hover {

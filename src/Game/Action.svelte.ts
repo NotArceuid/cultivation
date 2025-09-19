@@ -5,7 +5,7 @@ export type IProgressAction = IProgress & IAction & IInfo;
 export type IProgressInfo = IProgress & IInfo;
 
 export interface IProgress {
-	progress: number; 
+	progress: number;
 	maxProgress: number;
 	nextTick?: () => void;
 }
@@ -15,7 +15,7 @@ export interface IAction extends IInfo {
 	sum: number;
 	effects: EffectFormat[];
 	requirements: [EffectFormat, () => boolean][];
-	CancelAction?: () => void
+	CancelAction?: () => void;
 }
 
 export interface IInfo {
@@ -35,8 +35,7 @@ export interface EffectFormat {
 
 Update.add(() => {
 	Player.Actions.forEach((action) => {
-		if (action.nextTick != null)
-			action.nextTick();
+		if (action.nextTick != null) action.nextTick();
 	});
 });
 
@@ -67,7 +66,6 @@ export function ActionExists(action: IProgressAction): boolean {
 export function RemoveAction(id: string) {
 	let idx = Player.Actions.findIndex((x) => x.title == id);
 	if (idx !== -1) {
-	
 		Player.Actions.splice(idx, 1);
 		Player.Actions = Player.Actions;
 	}

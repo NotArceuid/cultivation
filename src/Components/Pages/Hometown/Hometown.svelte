@@ -1,11 +1,11 @@
 <script>
-	import { Player } from '../../../Game/Player.svelte.ts';
+	import { Player } from "../../../Game/Player.svelte.ts";
 	import ActionButtonEnterCombat from "../ActionButtonEnterCombat.svelte";
 	import HometownButtonProgress from "../ActionButtonProgress.svelte";
 	import { HometownDungeonData } from "./HometownDungeonData.svelte.ts";
 	import { HometownProgressData } from "./HometownProgressData.svelte.ts";
 
-	const gridStyle = "flex flex-col m-2 p-1 border-2 ";
+	const gridStyle = "flex flex-col m-2 p-1 border ";
 	const gridLabel = "ml-2 text-lg";
 </script>
 
@@ -22,10 +22,10 @@
 			/>
 
 			{#if Player.Intelligence > 1}
-			<HometownButtonProgress
-				data={HometownProgressData[0]}
-				opts={{ barBackgroundClass: "bg-gray-200" }}
-			/>				
+				<HometownButtonProgress
+					data={HometownProgressData[0]}
+					opts={{ barBackgroundClass: "bg-gray-200" }}
+				/>
 			{/if}
 		</div>
 		<div class=" w-3/12 {gridStyle}">
@@ -35,7 +35,7 @@
 		</div>
 
 		<div class=" w-3/12 {gridStyle}">
-			<h1 class="{gridLabel} ">Tasks:</h1>
+			<h1 class="{gridLabel} ">Story Tasks:</h1>
 			<button>Get hit by a truck</button>
 		</div>
 		<div class="w-1/6 {gridStyle}">

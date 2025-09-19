@@ -3,4 +3,5 @@ export interface ProgressBarOptions {
 	labelClass?: string;
 	barProgressClass?: string;
 	barBackgroundClass?: string;
+	height?: number;
 }
