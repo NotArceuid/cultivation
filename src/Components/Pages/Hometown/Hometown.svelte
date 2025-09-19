@@ -9,8 +9,8 @@
 	const gridLabel = "ml-2 text-lg";
 </script>
 
-<div class="absolute min-w-full min-h-full p-5">
-	<div class="flex flex-row">
+<div class="absolute min-w-full min-h-full p-1 pt-3">
+	<div class="flex flex-row justify-center align-middle">
 		<div class=" w-3/12 {gridStyle}">
 			<h1 class={gridLabel}>Repeatable Actions:</h1>
 

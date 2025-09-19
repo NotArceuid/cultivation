@@ -41,9 +41,11 @@
 {:else}
 	<div class="flex flex-row min-h-full ml-2 justify-center align-middle">
 		<VNavbar />
-		<div class="relative min-h-full w-9/12 flex flex-col" id="page-content">
-			<World />
-			<div class="border h-6/12 border-l-0 border-r-0 p-2">
+		<div class="flex-col flex min-h-full w-full">
+			<div class="relative min-h-8/12 flex flex-col">
+				<World />
+			</div>
+			<div class="border min-h-4/12 border-l-0 border-r-0 p-2">
 				<h6 class="p-2 text-lg font-semibold">Logs</h6>
 				<div
 					id="log"
