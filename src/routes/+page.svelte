@@ -6,6 +6,9 @@
 	import World from "../Components/Pages/World.svelte";
 	import { isLoading } from "svelte-i18n";
 	import { GameLoop } from "../Game/Game";
+	import { Log } from '../Game/Logger';
+	import LogMessage from '../Components/Layout/LogMessage.svelte';
+	import { writable } from 'svelte/store';
 
 	onMount(() => {
 		CurrentPage.subscribe((x) => {
@@ -15,18 +18,39 @@
 		const gameloop = new GameLoop();
 		gameloop.start();
 	});
+
+	let pageLoaded = $state(false);
+	$effect(() => {
+		if (!pageLoaded)
+			return;
+		
+		Log.add((msg) => {
+			console.log(document.getElementById('log') as HTMLElement);
+			
+			mount(LogMessage, {
+				target: document.getElementById('log') as HTMLElement,
+				props: { message: msg },
+			});
+		});
+
+		Log.invoke("Game loaded. Welcome");
+	})
 </script>
 
 {#if $isLoading}
 	<h1>Loading...</h1>
 {:else}
-	<div class="flex flex-row min-h-full ml-2 mr-2">
+	<div class="flex flex-row min-h-full ml-2 justify-center align-middle">
 		<VNavbar />
 		<div class="relative min-h-full w-9/12 flex flex-col" id="page-content">
-			<!-- <div class="border h-18 border-l-0 border-r-0 border-t-0"></div> -->
 			<World />
+			<div class="border h-6/12 border-l-0 border-r-0 p-2">
+				<h6 class="p-2 text-lg font-semibold">Logs</h6>
+				<div id="log" class="overflow-y-scroll h-full w-11/12 scroll-m-2 p-2 text-lg"></div>
+			</div>
 		</div>
 
 		<TaskBar />
 	</div>
+	{pageLoaded = true}
 {/if}

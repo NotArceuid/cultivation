@@ -30,17 +30,17 @@
 	console.log(ops.height);
 </script>
 
-<div class="flex relative min-h-{ops.height} {ops?.wrapperClass}">
-    <div class="absolute inset-0/12 font-semibold flex items-center z-1">
-        <h6 class="text-sm px-2">
-            {data.progress} / {data.maxProgress}
-        </h6>
-    </div>
-    
-    <div
-        class="absolute {ops?.barProgressClass} h-full"
-        style="width: {amount}%"
-    ></div>
-    
-    <div class="border w-full h-full absolute {ops?.barBackgroundClass}"></div>
+<div class="flex relative min-w-full min-h-{ops.height} {ops?.wrapperClass}">
+	<div class="absolute inset-0/12 font-semibold flex items-center z-1">
+		<h6 class="text-sm px-2">
+			{data.progress} / {data.maxProgress}
+		</h6>
+	</div>
+
+	<div
+		class="absolute {ops?.barProgressClass} h-full"
+		style="width: {amount}%"
+	></div>
+
+	<div class="border w-full h-full absolute {ops?.barBackgroundClass}"></div>
 </div>

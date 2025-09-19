@@ -3,7 +3,7 @@
 
 	import { _ } from "svelte-i18n";
 	import {
-	currentDungeon,
+		currentDungeon,
 		EnterCombat,
 		ExitDungeon,
 		isInCombat,
@@ -33,10 +33,9 @@
 	use:useDungeonTooltip={data}
 	onclick={() => {
 		if (isInCombat) {
-			if ($currentDungeon.CancelAction)
-				$currentDungeon.CancelAction();
-			
-			ExitDungeon($currentDungeon)
+			if ($currentDungeon.CancelAction) $currentDungeon.CancelAction();
+
+			ExitDungeon($currentDungeon);
 			enterCombat();
 		}
 	}}

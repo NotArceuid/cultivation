@@ -43,7 +43,7 @@
 </script>
 
 <div class="flex flex-row w-full h-full">
-	<div class="w-2/6 max-w-32 min-h-full border border-t-0 border-l-0">
+	<div class="w-2/6 max-w-40 min-h-full border border-t-0 border-l-0">
 		<div id="locations-nav" class="flex flex-col mt-4">
 			<h6 class="text-center pb-4 mb-4 border-b-2">Locations</h6>
 			<button

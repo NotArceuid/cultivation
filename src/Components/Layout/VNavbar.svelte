@@ -5,19 +5,6 @@
 	import Progressbar from "../Common/Progressbar.svelte";
 	import { useProgressInfoTooltip } from "../Common/Tooltip.svelte.ts";
 	import type { IProgressInfo } from "../../Game/Action.svelte.ts";
-
-	let energyData: IProgressInfo = $state({
-		progress: 0,
-		maxProgress: 0,
-		description: "stats.energy.description",
-		title: "stats.energy.title",
-		attribute: "stats.energy.attribute",
-	});
-
-	$effect(() => {
-		energyData.progress = Player.Energy;
-		energyData.maxProgress = Player.MaxEnergy;
-	});
 </script>
 
 <div
@@ -25,18 +12,7 @@
 	id="vnavbarBtn"
 >
 	<div id="energyStats" class="flex-col pt-2">
-		<h6 class="text-center text-lg m-4">Novice mage</h6>
-
-		<div class="relative" use:useProgressInfoTooltip={energyData}>
-			<Progressbar data={energyData} ops={{ height:10, barProgressClass: 'bg-green-300' }} />
-		</div>
-		<div class="p-2 border-b-2">
-			<h6>{$_("stats.coins.title")}: {Player.Gold}</h6>
-			<h6>{$_("stats.knowledge.title")}: {Player.Intelligence}</h6>
-			<h6>{$_("stats.strength.title")}: {Player.Strength}</h6>
-		</div>
-		<h6 class="text-blue-600" style={"visibility: hidden"}>B: 1000</h6>
-		<h6 class="text-red-600" style={"visibility: hidden"}>B: 1000</h6>
+		<h6 class="text-center text-lg m-2">Novice mage</h6>
 	</div>
 	<div id="vnavbarBtn" class="flex flex-col">
 		<button onclick={() => CurrentPage.set(PagesEnum.World)}>
