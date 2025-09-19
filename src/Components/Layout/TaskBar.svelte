@@ -24,7 +24,7 @@
 </script>
 
 <div class="flex-col min-h-full border border-t-0" style="width: 12.5%;">
-	<div class="p-2 flex flex-col h-5/6 relative">
+	<div class=" flex flex-col h-5/6 relative">
 		<div class="min-h-32 border border-t-0 border-l-0 border-r-0 p-2">
 			<h6 class="text-center font-semibold pb-3">
 				{$_("rightbar.label")} ({Player.Actions.length} / {Player.MaxAction})
@@ -33,13 +33,14 @@
 				<ActionBar {action} />
 			{/each}
 		</div>
-		<div class="relative" use:useProgressInfoTooltip={energyData}>
+		<div class="relative p-2" use:useProgressInfoTooltip={energyData}>
+			<h6>Energy</h6>
 			<Progressbar
 				data={energyData}
 				ops={{ height: 10, barProgressClass: "bg-green-300" }}
 			/>
 		</div>
-		<div class="p-2 border-b-2">
+		<div class="p-2 border-b-2 border-t-2">
 			<h6>{$_("stats.coins.title")}: {Player.Gold}</h6>
 			<h6>{$_("stats.knowledge.title")}: {Player.Intelligence}</h6>
 			<h6>{$_("stats.strength.title")}: {Player.Strength}</h6>

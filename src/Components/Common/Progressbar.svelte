@@ -26,12 +26,10 @@
 			height: typeof ops.height === "number" ? ops.height : 6,
 		};
 	}
-
-	console.log(ops.height);
 </script>
 
 <div class="flex relative min-w-full min-h-{ops.height} {ops?.wrapperClass}">
-	<div class="absolute inset-0/12 font-semibold flex items-center z-1">
+	<div class="inset-0 font-semibold flex items-center z-1">
 		<h6 class="text-sm px-2">
 			{data.progress} / {data.maxProgress}
 		</h6>

@@ -14,13 +14,16 @@
 </script>
 
 <div class="flex flex-row" use:useProgressActionTooltip={action}>
-	<button
-		class="border border-black h-6 w-6 text-center align-middle bg-red-400"
-		onclick={() => cancel(action.title)}>x</button
-	>
 	<div class="relative w-full">
-		<h1 class="absolute left-2 z-1">{$_(action.title)}</h1>
-		<Progressbar data={action} ops={{ wrapperClass: "w-full h-full" }} />
+		<div class="flex font-bold">
+			<button
+				class="border h-6 w-7 text-center text-sm"
+				onclick={() => cancel(action.title)}>x</button
+			>
+			<h1 class="ml-2 z-1">{$_(action.title)}</h1>
+		</div>
+
+		<Progressbar data={action} ops={{ height: 4 }} />
 	</div>
 </div>
 

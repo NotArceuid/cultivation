@@ -21,7 +21,7 @@ export const Player = $state<{
 	Name: "Player",
 	Magicules: 0,
 	MaxMagicules: 100,
-	Gold: 100,
+	Gold: 10,
 	Intelligence: 1,
 	Strength: 1,
 	Health: 100,
