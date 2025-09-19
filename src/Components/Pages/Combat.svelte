@@ -1,10 +1,12 @@
 <script lang='ts'>
 	import { type IProgress, type IProgressInfo } from '../../Game/Action.svelte';
-	import type { IDungeonInfo } from '../../Game/Combat/Combat.svelte';
+	import { Dungeon, DungeonCompleted, Enemy, type IDungeonInfo } from '../../Game/Combat/Combat.svelte';
+	import { _ } from 'svelte-i18n';
 	import { Player } from '../../Game/Player.svelte';
 	import Progressbar from '../Common/Progressbar.svelte';
+	import { useEnemyTooltip } from '../Common/Tooltip.svelte';
 
-	let { data } : {data: IDungeonInfo} = $props()
+	let { data } : {data: Dungeon} = $props()
 
 	const playerData: IProgress = $state({
 		progress: Player.MaxHealth,
@@ -12,13 +14,24 @@
 		nextTick: () => {} // Returning nothing because hp regen already occurs in game loop
 	})
 
+	let currentEnemies = $state(data.Waves[data.sum]);
 	$effect(() => {
-		playerData.progress = Player.Health;
-		playerData.maxProgress = Player.MaxHealth;
-	})
+    		playerData.progress = Player.Health;
+    		playerData.maxProgress = Player.MaxHealth;
+    
+    		if (!data?.Waves?.length) return;
+    
+    		if (currentEnemies.every(x => x?.Health?.progress <= 0) && currentEnemies.length != 0) {
+			data.sum++;
+    		}
+
+    		if (data.sum >= data.Waves.length) {
+      		  	DungeonCompleted(data);
+    	}
+});
 </script>
 
-<div class="p-2">
+<div class="p-2 absolute w-full min-h-full">
 	<div class="flex flex-row">
 		<div class="w-5/12 border-2">
 			<div class="p-2">
@@ -27,9 +40,11 @@
 			</div>
 		</div>
 		<div class="w-5/12 border-2 ml-auto">
-			{#each data.Enemies as enemies}
-				<h1 class="ml-2 font-bold text-md">{enemies.Info.title}</h1>
-				<Progressbar data={ enemies.Health} ops={{barProgressClass: 'bg-green-300'}}/> 
+			{#each data.Waves[data.sum] as enemy}
+				<div use:useEnemyTooltip={enemy} >
+					<h1 class="ml-2 font-bold text-md">{$_(enemy.Info.title)}</h1>
+				<Progressbar data={enemy.Health} ops={{barProgressClass: 'bg-green-300'}}/> 
+				</div>
 			{/each}
 		</div>
 	</div>

@@ -6,6 +6,9 @@
 
 	let { action }: { action: IProgressAction } = $props();
 	function cancel(id: string): void {
+		if (action.CancelAction)
+			action.CancelAction();
+		
 		RemoveAction(id);
 	}
 </script>

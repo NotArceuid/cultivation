@@ -8,6 +8,7 @@ export enum PagesEnum {
 	Info,
 }
 export enum LocationEnum {
+	Combat,
 	Hometown,
 	Mindscape,
 }

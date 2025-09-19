@@ -22,9 +22,6 @@
 		<h6 class="text-center">Novice mage</h6>
 
 		<div class="relative" use:useProgressInfoTooltip={energyData}>
-			<h6 class="absolute left-2 z-1">
-				E: {Player.Energy} / {Player.MaxEnergy}
-			</h6>
 			<Progressbar data={energyData} />
 		</div>
 		<div>

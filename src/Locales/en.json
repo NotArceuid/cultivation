@@ -70,6 +70,23 @@
 				"attribute": "Combat, Dungeon",
 				"description": "You decided to fight back against the very people whom stole your lunch money.. ",
 				"rewards": ["Unlocks New Content (Very good)"]
+			},
+			"enemies": {
+				"bully": {
+					"title": "Bully",
+					"attribute": "Common, Enemy",
+					"description": "Oh hey.. It's the kid from the neighbouring class. Let's show them who's the boss. "
+				},
+				"fatbully": {
+					"title": "Fat Bully",
+					"attribute": "Common, Enemy",
+					"description": "It's your average bully.. but fatter and more hp"
+				},
+				"bigbully": {
+					"title": "Big Bully",
+					"attribute": "Boss, Enemy",
+					"description": "It is him!! The big bully, the guy that stole your lunch money."
+				}
 			}
 		},
 		"mindscape": {

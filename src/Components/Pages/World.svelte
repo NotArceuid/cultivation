@@ -2,23 +2,36 @@
 	import { onMount } from "svelte";
 	import Mindscape from "./Mindscape.svelte";
 	import { ChangePage, CurrentLocation, LocationEnum } from "./Pages";
-	import { _ } from "svelte-i18n";
+	import { _, date } from "svelte-i18n";
 	import { useInfoTooltip } from "../Common/Tooltip.svelte.ts";
 	import { MindscapeInfo } from "./Mindscape.svelte.ts";
 	import Hometown from "./Hometown/Hometown.svelte";
 	import { HometownInfo } from "./Hometown/Hometown.svelte.ts";
 	import Combat from './Combat.svelte';
-	import { currentDungeon, isInCombat, type IDungeonInfo } from '../../Game/Combat/Combat.svelte.ts';
+	import { currentDungeon, Dungeon, isInCombat, type IDungeonInfo } from '../../Game/Combat/Combat.svelte.ts';
 
+	let previousLocation: LocationEnum = LocationEnum.Hometown;
+	
 	onMount((): void => {
 		CurrentLocation.subscribe((x) => {
 			ChangePage(x, "locations");
 		});
-		
+		isInCombat.subscribe((inCombat) => {
+			console.log(inCombat);
+			
+    			if (inCombat) {
+        			ChangePage(LocationEnum.Combat, "locations");
+        			previousLocation = $CurrentLocation;
+    			} else {
+        		console.log("1", previousLocation);
+        		ChangePage(previousLocation, "locations");
+    			}
+		});
+
 		ChangePage(LocationEnum.Hometown, "locations");
 	});
 
-	let dungeonInfo = $state<IDungeonInfo>() 
+	let dungeonInfo = $state<Dungeon | undefined>() 
 	currentDungeon.subscribe((x) => {
 		dungeonInfo = x;
 	})
@@ -42,12 +55,11 @@
 		</div>
 	</div>
 		<div id="locations" class="relative w-full">
-			{#if $isInCombat && dungeonInfo != null}
-				<Combat data={dungeonInfo}/>
-			{:else}
+			{#if dungeonInfo}
+				<Combat data={dungeonInfo} />
+			{/if}	
 				<Hometown /> 
 				<Mindscape />
-			{/if}
 		</div>
 </div>
 <style>

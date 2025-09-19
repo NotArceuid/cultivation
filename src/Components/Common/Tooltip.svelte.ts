@@ -3,10 +3,11 @@ import type { IAction, IInfo, IProgressAction, IProgressInfo } from "../../Game/
 import InfoTooltip from "./InfoTooltip.svelte";
 import ProgressTooltip from "./ProgressTooltip.svelte";
 import ActionTooltip from "./ActionTooltip.svelte";
-import type { IDungeonInfo } from "../../Game/Combat/Combat.svelte";
+import type { IDungeonInfo, IEnemy } from "../../Game/Combat/Combat.svelte";
 import DungeonTooltip from "./DungeonTooltip.svelte";
 import ProgressInfoTooltip from './ProgressInfoTooltip.svelte';
 import ProgressActionTooltip from './ProgressTooltip.svelte';
+import EnemyTooltip from './EnemyTooltip.svelte';
 
 type TooltipComponent =
 	| ProgressTooltip
@@ -95,4 +96,8 @@ export function useActionTooltip(element: HTMLElement, data: IAction) {
 
 export function useDungeonTooltip(element: HTMLElement, data: IDungeonInfo) {
 	return createTooltipHandlers(element, data, DungeonTooltip);
+}
+
+export function useEnemyTooltip(element: HTMLElement, data: IEnemy) {
+	return createTooltipHandlers(element, data, EnemyTooltip)
 }

@@ -15,6 +15,7 @@ export interface IAction extends IInfo {
 	sum: number;
 	effects: EffectFormat[];
 	requirements: [EffectFormat, () => boolean][];
+	CancelAction?: () => void
 }
 
 export interface IInfo {
@@ -66,6 +67,7 @@ export function ActionExists(action: IProgressAction): boolean {
 export function RemoveAction(id: string) {
 	let idx = Player.Actions.findIndex((x) => x.title == id);
 	if (idx !== -1) {
+	
 		Player.Actions.splice(idx, 1);
 		Player.Actions = Player.Actions;
 	}

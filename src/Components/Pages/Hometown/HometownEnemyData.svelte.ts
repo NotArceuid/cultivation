@@ -9,9 +9,9 @@ export const EnemyData : IEnemy[] = [
 		AttackSpeed: 1,
 		Abilities: [],
 		Info: {
-			title: 'locations.hometown.fatbully.title',
-			attribute: 'locations.hometown.fatbully.attribute',
-			description: 'locations.hometown.fatbully.description'
+			title: 'locations.hometown.enemies.fatbully.title',
+			attribute: 'locations.hometown.enemies.fatbully.attribute',
+			description: 'locations.hometown.enemies.fatbully.description'
 		}
 	},
 	{
@@ -22,9 +22,9 @@ export const EnemyData : IEnemy[] = [
 		AttackSpeed: 1,
 		Abilities: [],
 		Info: {
-			title: 'locations.hometown.bully.title',
-			attribute: 'locations.hometown.bully.attribute',
-			description: 'locations.hometown.bully.description'
+			title: 'locations.hometown.enemies.bully.title',
+			attribute: 'locations.hometown.enemies.bully.attribute',
+			description: 'locations.hometown.enemies.bully.description'
 		}
 	},
 	{
@@ -35,9 +35,9 @@ export const EnemyData : IEnemy[] = [
 		AttackSpeed: 1,
 		Abilities: [],
 		Info: {
-			title: 'locations.hometown.topbully.title',
-			attribute: 'locations.hometown.topbully.attribute',
-			description: 'locations.hometown.topbully.description'
+			title: 'locations.hometown.enemies.bigbully.title',
+			attribute: 'locations.hometown.enemies.bigbully.attribute',
+			description: 'locations.hometown.enemies.bigbully.description'
 		}
 	}
 ] 

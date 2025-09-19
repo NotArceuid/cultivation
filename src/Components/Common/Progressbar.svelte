@@ -17,6 +17,9 @@
 </script>
 
 <div class="flex relative min-h-6 {ops?.wrapperClass}">
+				<h6 class="absolute left-2 z-1">
+				{data.progress} / {data.maxProgress}
+			</h6>
 	<div
 		class="absolute {ops?.barProgressClass} h-full"
 		style="width: {amount}%"

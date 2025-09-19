@@ -15,8 +15,6 @@
 			});
 		});
 	});
-
-	$effect(() => {});
 </script>
 
 <div class="flex-col w-1/6 min-h-full border-2 border-t-0">
