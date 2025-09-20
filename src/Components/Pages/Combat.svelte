@@ -1,15 +1,10 @@
 <script lang="ts">
 	import { type IProgress, type IProgressInfo } from "../../Game/Action.svelte";
-	import {
-		Dungeon,
-		DungeonCompleted,
-		Enemy,
-		type IDungeonInfo,
-	} from "../../Game/Combat/Combat.svelte";
 	import { _ } from "svelte-i18n";
 	import { Player } from "../../Game/Player.svelte";
 	import Progressbar from "../Common/Progressbar.svelte";
 	import { useEnemyTooltip } from "../Common/Tooltip.svelte";
+	import { DungeonCompleted, type Dungeon } from '../../Game/Combat/Dungeon.svelte';
 
 	let { data }: { data: Dungeon } = $props();
 

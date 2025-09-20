@@ -15,16 +15,11 @@
 			<h1 class={gridLabel}>Repeatable Actions:</h1>
 
 			<HometownButtonProgress
-				data={HometownProgressData[1]}
-				opts={{
-					barProgressClass: "bg-blue-300",
-				}}
-			/>
+				data={HometownProgressData[1]}/>
 
 			{#if Player.Intelligence > 1}
 				<HometownButtonProgress
 					data={HometownProgressData[0]}
-					opts={{ barBackgroundClass: "bg-gray-200" }}
 				/>
 			{/if}
 		</div>
@@ -34,13 +29,14 @@
 			<!-- <ActionButtonInstant data={HometownInstantData[0]} /> -->
 		</div>
 
-		<div class=" w-3/12 {gridStyle}">
-			<h1 class="{gridLabel} ">Story Tasks:</h1>
-			<button>Get hit by a truck</button>
-		</div>
-		<div class="w-1/6 {gridStyle}">
+
+		<div class="w-3/12 {gridStyle}">
 			<h1 class={gridLabel}>Combat:</h1>
 			<ActionButtonEnterCombat data={HometownDungeonData[0]} />
+		</div>
+		<div class=" w-1/6 {gridStyle}">
+			<h1 class="{gridLabel} ">Npc:</h1>
+			<button>Get hit by a truck</button>
 		</div>
 	</div>
 </div>

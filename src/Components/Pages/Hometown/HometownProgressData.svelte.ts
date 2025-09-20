@@ -38,13 +38,13 @@ export const HometownProgressData: IProgressAction[] = $state<
 		description: "locations.hometown.goschool.description",
 		effects: [
 			{ subject: `+${1}`, predicate: ["stats.knowledge.title"] },
-			{ subject: `-${0.25}`, predicate: ["stats.energy.title"] },
+			{ subject: `-${2}`, predicate: ["stats.energy.title"] },
 		],
 		attribute: "locations.hometown.goschool.attribute",
 		requirements: [
 			[
-				{ subject: `>${0.25}`, predicate: ["stats.energy.title"] },
-				() => Player.Energy >= 0.25,
+				{ subject: `>${2}`, predicate: ["stats.energy.title"] },
+				() => Player.Energy >= 2,
 			],
 		],
 		sum: 0,
@@ -52,7 +52,7 @@ export const HometownProgressData: IProgressAction[] = $state<
 		maxProgress: 100,
 		onSuccess: function (): void {
 			AddIntelligence(1);
-			RemoveEnergy(0.25);
+			RemoveEnergy(2);
 
 			this.sum++;
 			this.progress = 0;

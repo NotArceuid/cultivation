@@ -1,4 +1,5 @@
 enum ElementTypes {
+	Physical,
 	Fire,
 	Earth,
 	Ice,

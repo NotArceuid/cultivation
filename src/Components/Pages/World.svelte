@@ -10,10 +10,9 @@
 	import Combat from "./Combat.svelte";
 	import {
 		currentDungeon,
-		Dungeon,
 		isInCombat,
-		type IDungeonInfo,
 	} from "../../Game/Combat/Combat.svelte.ts";
+	import type { Dungeon } from '../../Game/Combat/Dungeon.svelte.ts';
 
 	let previousLocation: LocationEnum = LocationEnum.Hometown;
 

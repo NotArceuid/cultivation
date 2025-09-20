@@ -14,7 +14,7 @@ export interface IAction extends IInfo {
 	onSuccess: () => void;
 	sum: number;
 	effects: EffectFormat[];
-	requirements: [EffectFormat, () => boolean][];
+	requirements?: [EffectFormat, () => boolean][];
 	CancelAction?: () => void;
 }
 
@@ -25,6 +25,8 @@ export interface IInfo {
 }
 
 export function IsRequirementsMet(data: IAction): boolean {
+	if (!data.requirements)
+		return false;
 	return data.requirements.every(([_, e]) => e() == true);
 }
 
