@@ -5,14 +5,14 @@
 	import { HometownDungeonData } from "./HometownDungeonData.svelte.ts";
 	import { HometownProgressData } from "./HometownProgressData.svelte.ts";
 
-	const gridStyle = "flex flex-col m-2 p-1 border ";
-	const gridLabel = "ml-2 text-lg";
+	const gridStyle = "flex flex-col m-2 p-1";
+	const gridLabel = "ml-2 text-lg text-center border-b-1 p-1 mb-3";
 </script>
 
 <div class="absolute min-w-full min-h-full p-1 pt-3">
 	<div class="flex flex-row justify-center align-middle">
 		<div class=" w-3/12 {gridStyle}">
-			<h1 class={gridLabel}>Repeatable Actions:</h1>
+			<h1 class={gridLabel}>Repeatable Actions</h1>
 
 			<HometownButtonProgress data={HometownProgressData[1]} />
 
@@ -21,17 +21,17 @@
 			{/if}
 		</div>
 		<div class=" w-3/12 {gridStyle}">
-			<h1 class={gridLabel}>Instant Actions:</h1>
+			<h1 class={gridLabel}>Instant Actions</h1>
 
 			<!-- <ActionButtonInstant data={HometownInstantData[0]} /> -->
 		</div>
 
 		<div class="w-3/12 {gridStyle}">
-			<h1 class={gridLabel}>Combat:</h1>
+			<h1 class={gridLabel}>Combat</h1>
 			<ActionButtonEnterCombat data={HometownDungeonData[0]} />
 		</div>
 		<div class=" w-1/6 {gridStyle}">
-			<h1 class="{gridLabel} ">Npc:</h1>
+			<h1 class="{gridLabel} ">Npcs</h1>
 			<button>Get hit by a truck</button>
 		</div>
 	</div>

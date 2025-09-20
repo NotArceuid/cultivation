@@ -41,7 +41,7 @@
 <button
 	class="h-24 border p-2 m-2 {buttonClass} {isDisabled
 		? 'bg-gray-200 cursor-default'
-		: 'cursor-pointer'} "
+		: 'cursor-pointer hover:bg-gray-100'} "
 	disabled={isDisabled}
 	use:useActionTooltip={data}
 	onclick={() => addAction()}

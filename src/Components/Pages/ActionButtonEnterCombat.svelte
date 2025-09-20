@@ -30,7 +30,7 @@
 <button
 	class="h-12 border p-2 m-2 {isDisabled
 		? 'bg-gray-200 cursor-default'
-		: 'cursor-pointer'} "
+		: 'cursor-pointer hover:bg-gray-100'} "
 	disabled={isDisabled}
 	use:useDungeonTooltip={data}
 	onclick={() => {
