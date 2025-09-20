@@ -12,8 +12,8 @@ import DungeonTooltip from "./DungeonTooltip.svelte";
 import ProgressInfoTooltip from "./ProgressInfoTooltip.svelte";
 import ProgressActionTooltip from "./ProgressTooltip.svelte";
 import EnemyTooltip from "./EnemyTooltip.svelte";
-import type { IDungeonInfo } from '../../Game/Combat/Dungeon.svelte';
-import type { IEnemy } from '../../Game/Combat/Enemy.svelte';
+import type { IDungeonInfo } from "../../Game/Combat/Dungeon.svelte";
+import type { IEnemy } from "../../Game/Combat/Enemy.svelte";
 
 type TooltipComponent =
 	| ProgressTooltip

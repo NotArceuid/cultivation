@@ -1,5 +1,5 @@
-import type { IInfo, IProgress } from '../Action.svelte';
-import type { Abilities } from './Abilities.svelte';
+import type { IInfo, IProgress } from "../Action.svelte";
+import type { Abilities } from "./Abilities.svelte";
 
 export class Enemy implements IEnemy {
 	public Health: IProgress;
@@ -7,7 +7,7 @@ export class Enemy implements IEnemy {
 	public Abilities: Abilities[] = $state([]);
 	public Info: IInfo;
 	public HealthRegen: number;
-	
+
 	constructor(enemy: IEnemy) {
 		this.Health = enemy.Health;
 		this.Info = enemy.Info;

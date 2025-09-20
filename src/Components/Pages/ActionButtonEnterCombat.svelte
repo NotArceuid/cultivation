@@ -3,8 +3,15 @@
 
 	import { _ } from "svelte-i18n";
 	import { useDungeonTooltip } from "../Common/Tooltip.svelte.ts";
-	import { currentDungeon, EnterCombat, isInCombat } from '../../Game/Combat/Combat.svelte.ts';
-	import { ExitDungeon, type IDungeonInfo } from '../../Game/Combat/Dungeon.svelte.ts';
+	import {
+		currentDungeon,
+		EnterCombat,
+		isInCombat,
+	} from "../../Game/Combat/Combat.svelte.ts";
+	import {
+		ExitDungeon,
+		type IDungeonInfo,
+	} from "../../Game/Combat/Dungeon.svelte.ts";
 	let { data }: { data: IDungeonInfo } = $props();
 
 	let isDisabled = $state(false);

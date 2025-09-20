@@ -14,13 +14,10 @@
 		<div class=" w-3/12 {gridStyle}">
 			<h1 class={gridLabel}>Repeatable Actions:</h1>
 
-			<HometownButtonProgress
-				data={HometownProgressData[1]}/>
+			<HometownButtonProgress data={HometownProgressData[1]} />
 
 			{#if Player.Intelligence > 1}
-				<HometownButtonProgress
-					data={HometownProgressData[0]}
-				/>
+				<HometownButtonProgress data={HometownProgressData[0]} />
 			{/if}
 		</div>
 		<div class=" w-3/12 {gridStyle}">
@@ -28,7 +25,6 @@
 
 			<!-- <ActionButtonInstant data={HometownInstantData[0]} /> -->
 		</div>
-
 
 		<div class="w-3/12 {gridStyle}">
 			<h1 class={gridLabel}>Combat:</h1>

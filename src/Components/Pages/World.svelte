@@ -1,10 +1,8 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import Mindscape from "./Mindscape.svelte";
 	import { ChangePage, CurrentLocation, LocationEnum } from "./Pages";
 	import { _, date } from "svelte-i18n";
 	import { useInfoTooltip } from "../Common/Tooltip.svelte.ts";
-	import { MindscapeInfo } from "./Mindscape.svelte.ts";
 	import Hometown from "./Hometown/Hometown.svelte";
 	import { HometownInfo } from "./Hometown/Hometown.svelte.ts";
 	import Combat from "./Combat.svelte";
@@ -12,7 +10,9 @@
 		currentDungeon,
 		isInCombat,
 	} from "../../Game/Combat/Combat.svelte.ts";
-	import type { Dungeon } from '../../Game/Combat/Dungeon.svelte.ts';
+	import type { Dungeon } from "../../Game/Combat/Dungeon.svelte.ts";
+	import { MindscapeInfo } from "./Mindscape/Mindscape.svelte.ts";
+	import Mindscape from "./Mindscape/Mindscape.svelte";
 
 	let previousLocation: LocationEnum = LocationEnum.Hometown;
 
@@ -58,7 +58,7 @@
 			>
 		</div>
 	</div>
-	<div id="locations" class="relative w-full">
+	<div id="locations" class="relative w-full h-full">
 		{#if dungeonInfo}
 			<Combat data={dungeonInfo} />
 		{/if}

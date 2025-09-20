@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { get } from "svelte/store";
-	import { ElementTypes } from "../../Game/Content/Elements.ts";
-	import { Player } from "../../Game/Player.svelte";
+	import { Player } from "../../../Game/Player.svelte";
+	import type { ElementTypes } from "../../../Game/Content/Elements";
 
 	function onFinished(element: ElementTypes) {
 		Player.Elements[element].Level++;

@@ -1,4 +1,5 @@
 import type { IProgressAction } from "./Action.svelte";
+import { AbilityEnum } from "./Combat/Abilities.svelte";
 import { ElementTypes, type IElement } from "./Content/Elements";
 import { Update } from "./Game";
 
@@ -17,6 +18,7 @@ export const Player = $state<{
 	Energy: number;
 	MaxEnergy: number;
 	Elements: IElement[];
+	Abilities: AbilityEnum[];
 }>({
 	Name: "Player",
 	Magicules: 0,
@@ -40,6 +42,7 @@ export const Player = $state<{
 		{ ElementType: ElementTypes.Water, Level: 0, Progress: 0, Stars: 0 },
 		{ ElementType: ElementTypes.Wind, Level: 0, Progress: 0, Stars: 0 },
 	],
+	Abilities: [AbilityEnum.punch],
 });
 
 export function AddEnergy(amount: number) {

@@ -8,7 +8,6 @@
 	import { GameLoop } from "../Game/Game";
 	import { Log } from "../Game/Logger";
 	import LogMessage from "../Components/Layout/LogMessage.svelte";
-	import { writable } from "svelte/store";
 
 	onMount(() => {
 		CurrentPage.subscribe((x) => {

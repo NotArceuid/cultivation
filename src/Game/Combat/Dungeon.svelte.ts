@@ -1,8 +1,8 @@
-import { get } from 'svelte/store';
-import type { EffectFormat, IAction, IInfo } from '../Action.svelte';
-import { Player } from '../Player.svelte';
-import { currentDungeon, isInCombat } from './Combat.svelte';
-import { Enemy, type IEnemy } from './Enemy.svelte';
+import { get } from "svelte/store";
+import type { EffectFormat, IAction, IInfo } from "../Action.svelte";
+import { Player } from "../Player.svelte";
+import { currentDungeon, isInCombat } from "./Combat.svelte";
+import { Enemy, type IEnemy } from "./Enemy.svelte";
 
 export function DungeonCompleted(dungeon: IDungeonInfo) {}
 export interface IDungeonInfo extends IInfo, IAction {
@@ -51,47 +51,40 @@ export class Dungeon implements IDungeonInfo {
 }
 
 export function Damage(damage: number, aoeRange: number = 1, player = false) {
-	if (player)
-	{
-		DamagePlayer( damage, aoeRange );
-	}
-	else
-	{
-		DamageEnemies( damage );
+	if (player) {
+		DamagePlayer(damage, aoeRange);
+	} else {
+		DamageEnemies(damage);
 	}
 }
 
-function DamageEnemies( damage: number )
-{
-	let dungeon = get( currentDungeon );
-	let enemies = dungeon.Waves[ dungeon.sum ];
-	for ( let i = 0; i < enemies.length; i++ )
-	{
-		const enemy = enemies[ i ];
+function DamageEnemies(damage: number) {
+	let dungeon = get(currentDungeon);
+	let enemies = dungeon.Waves[dungeon.sum];
+	for (let i = 0; i < enemies.length; i++) {
+		const enemy = enemies[i];
 		if (enemy.Health.progress <= 0) {
 			continue;
 		}
 
-		DamageEnemy( enemy, damage );
+		DamageEnemy(enemy, damage);
 	}
 }
 
-function DamageEnemy( enemy: IEnemy, damage: number)
-{
-	enemy.Health.progress = Math.min(enemy.Health.progress - damage, enemy.Health.maxProgress)
-	if (enemy.Health.progress <= 0)
-	{
-		if (enemy.EnemyDied)
-			enemy.EnemyDied();
+function DamageEnemy(enemy: IEnemy, damage: number) {
+	enemy.Health.progress = Math.min(
+		enemy.Health.progress - damage,
+		enemy.Health.maxProgress,
+	);
+	if (enemy.Health.progress <= 0) {
+		if (enemy.EnemyDied) enemy.EnemyDied();
 	}
 }
 
-function DamagePlayer( damage: number, aoe :number )
-{
-	Player.Health = Math.min( Player.Health - damage, Player.MaxHealth );
-	if ( Player.Health <= 0 )
-	{
-		ExitDungeon( get( currentDungeon ) );
+function DamagePlayer(damage: number, aoe: number) {
+	Player.Health = Math.min(Player.Health - damage, Player.MaxHealth);
+	if (Player.Health <= 0) {
+		ExitDungeon(get(currentDungeon));
 	}
 }
 

@@ -25,8 +25,7 @@ export interface IInfo {
 }
 
 export function IsRequirementsMet(data: IAction): boolean {
-	if (!data.requirements)
-		return false;
+	if (!data.requirements) return false;
 	return data.requirements.every(([_, e]) => e() == true);
 }
 

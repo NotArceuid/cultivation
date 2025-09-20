@@ -1,5 +1,5 @@
-import { EnterCombat } from '../../../Game/Combat/Combat.svelte';
-import type { IDungeonInfo } from '../../../Game/Combat/Dungeon.svelte';
+import { EnterCombat } from "../../../Game/Combat/Combat.svelte";
+import type { IDungeonInfo } from "../../../Game/Combat/Dungeon.svelte";
 import { Player } from "../../../Game/Player.svelte";
 import { EnemyData } from "./HometownEnemyData.svelte";
 

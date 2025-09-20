@@ -1,4 +1,4 @@
-import type { IEnemy } from '../../../Game/Combat/Enemy.svelte';
+import type { IEnemy } from "../../../Game/Combat/Enemy.svelte";
 
 export const EnemyData: IEnemy[] = [
 	{

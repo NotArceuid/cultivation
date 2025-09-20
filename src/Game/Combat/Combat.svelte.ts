@@ -4,7 +4,7 @@ import {
 	type EffectFormat,
 	type IProgressAction,
 } from "../Action.svelte";
-import { Dungeon, ExitDungeon, type IDungeonInfo } from './Dungeon.svelte.ts';
+import { Dungeon, ExitDungeon, type IDungeonInfo } from "./Dungeon.svelte.ts";
 
 export let isInCombat = writable<boolean>(false);
 export let currentDungeon = writable<Dungeon>({

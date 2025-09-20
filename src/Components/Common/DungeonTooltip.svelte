@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { _ } from "svelte-i18n";
 	import type { Vector2 } from "../../Game/Shared/Vector.js";
-	import type { IDungeonInfo } from '../../Game/Combat/Dungeon.svelte.js';
+	import type { IDungeonInfo } from "../../Game/Combat/Dungeon.svelte.js";
 
 	let {
 		data,
